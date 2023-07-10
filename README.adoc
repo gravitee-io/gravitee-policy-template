@@ -1,0 +1,68 @@
+= Gravitee Policy Template
+
+== Phases
+
+[cols="4*", options="header"]
+|===
+^|onRequest
+^|onResponse
+^|onMessageRequest
+^|onMessageResponse
+
+^.^| X
+^.^| X
+^.^| X
+^.^| X
+|===
+
+== Description
+
+Policy template
+
+
+== Configuration
+
+You can configure the policy with the following options:
+
+[cols="5*", options=header]
+|===
+^| Property
+^| Required
+^| Description
+^| Type
+^| Default
+
+.^|property
+^.^|
+.^|A property of your policy
+^.^|string
+^.^|
+
+|===
+
+Example configuration:
+
+[source, json]
+----
+{
+    "configuration": {
+        "property": "a-property-value"
+    }
+}
+----
+
+== Examples
+
+Provide some use cases of your policy
+
+== Errors
+
+|===
+|Phase | Code | Error template key | Description
+
+.^| REQUEST
+.^| ```400 - BAD REQUEST```
+.^| POLICY_TEMPLATE_ERROR_KEY
+.^| An error occurs during request
+
+|===
