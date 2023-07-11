@@ -17,7 +17,12 @@
 
 == Description
 
-Policy template
+A policy template to fork and use as a quick starter.
+
+This policy will compare `X-Template-Policy` header value with its configuration `errorKey` field, if both values are equal, then the policy will interrupt the request with a failure execution error.
+
+Implements `TemplatePolicy#onRequest(HttpExecutionContext context)` and `TemplatePolicy#onResponse(HttpExecutionContext context)` to develop your own policy
+
 
 
 == Configuration
@@ -32,11 +37,11 @@ You can configure the policy with the following options:
 ^| Type
 ^| Default
 
-.^|property
-^.^|
-.^|A property of your policy
+.^|errorKey
+^.^|X
+.^|Policy will fail if header `X-Template-Policy` value is equal to this field.
 ^.^|string
-^.^|
+^.^|"failure"
 
 |===
 
@@ -46,7 +51,7 @@ Example configuration:
 ----
 {
     "configuration": {
-        "property": "a-property-value"
+        "errorKey": "value-to-fail-the-policy"
     }
 }
 ----
@@ -57,6 +62,8 @@ Provide some use cases of your policy
 
 == Errors
 
+With the provided default implementation, policy will fail if header `X-Template-Policy` value is equal to configured `errorKey` value.
+
 |===
 |Phase | Code | Error template key | Description
 
@@ -64,5 +71,10 @@ Provide some use cases of your policy
 .^| ```400 - BAD REQUEST```
 .^| POLICY_TEMPLATE_ERROR_KEY
 .^| An error occurs during request
+
+.^| RESPONSE
+.^| ```500 - INTERNAL SERVER ERROR```
+.^| POLICY_TEMPLATE_ERROR_KEY
+.^| An error occurs during response
 
 |===
