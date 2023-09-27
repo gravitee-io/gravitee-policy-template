@@ -56,10 +56,6 @@ Example configuration:
 }
 ----
 
-== Examples
-
-Provide some use cases of your policy
-
 == Errors
 
 With the provided default implementation, policy will fail if header `X-Template-Policy` value is equal to configured `errorKey` value.
