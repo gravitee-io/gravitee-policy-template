@@ -21,7 +21,13 @@ A policy template to fork and use as a quick starter.
 
 This policy will compare `X-Template-Policy` header value with its configuration `errorKey` field, if both values are equal, then the policy will interrupt the request with a failure execution error.
 
-Implements `TemplatePolicy#onRequest(HttpExecutionContext context)` and `TemplatePolicy#onResponse(HttpExecutionContext context)` to develop your own policy
+Implements `TemplatePolicy#onRequest(HttpExecutionContext context)` and `TemplatePolicy#onResponse(HttpExecutionContext context)` to develop your own policy.
+
+NOTE: This policy is designed to work with at least APIM 4.0.0.
+
+=== AM and APIM V2 API compatibility
+
+To develop a policy working with AM or a v2 definition of an API in APIM, please follow link:./src/main/java/io/gravitee/policy/template/v3/TemplatePolicyV3.java[the v3 example implementation of the policy].
 
 
 
