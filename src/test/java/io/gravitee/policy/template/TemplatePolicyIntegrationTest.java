@@ -49,8 +49,8 @@ import org.junit.jupiter.api.Test;
  * @author GraviteeSource Team
  */
 @GatewayTest
-@DeployApi({ "/apis/api.json", "/apis/api-response.json" })
-class TemplatePolicyIntegrationTest extends AbstractPolicyTest<TemplatePolicy, TemplatePolicyConfiguration> {
+@DeployApi({ "/apis/v4/api.json", "/apis/v4/api-response.json" })
+public class TemplatePolicyIntegrationTest extends AbstractPolicyTest<TemplatePolicy, TemplatePolicyConfiguration> {
 
     @Override
     public void configureEntrypoints(Map<String, EntrypointConnectorPlugin<?, ?>> entrypoints) {
@@ -63,7 +63,7 @@ class TemplatePolicyIntegrationTest extends AbstractPolicyTest<TemplatePolicy, T
     }
 
     @Test
-    void should_call_api_with_policy_on_request(HttpClient httpClient) {
+    protected void should_call_api_with_policy_on_request(HttpClient httpClient) {
         wiremock.stubFor(get("/endpoint").willReturn(ok("backend response")));
 
         httpClient
@@ -83,7 +83,7 @@ class TemplatePolicyIntegrationTest extends AbstractPolicyTest<TemplatePolicy, T
     }
 
     @Test
-    void should_call_api_and_fail_with_policy_on_request(HttpClient httpClient) {
+    protected void should_call_api_and_fail_with_policy_on_request(HttpClient httpClient) {
         wiremock.stubFor(get("/endpoint").willReturn(ok()));
 
         httpClient
@@ -106,7 +106,7 @@ class TemplatePolicyIntegrationTest extends AbstractPolicyTest<TemplatePolicy, T
     }
 
     @Test
-    void should_call_api_with_policy_on_response(HttpClient httpClient) {
+    protected void should_call_api_with_policy_on_response(HttpClient httpClient) {
         wiremock.stubFor(get("/endpoint").willReturn(ok("backend response")));
 
         httpClient
@@ -127,7 +127,7 @@ class TemplatePolicyIntegrationTest extends AbstractPolicyTest<TemplatePolicy, T
     }
 
     @Test
-    void should_call_api_and_fail_with_policy_on_response(HttpClient httpClient) {
+    protected void should_call_api_and_fail_with_policy_on_response(HttpClient httpClient) {
         wiremock.stubFor(get("/endpoint").willReturn(ok().withHeader(TEMPLATE_POLICY_HEADER, "failure")));
 
         httpClient

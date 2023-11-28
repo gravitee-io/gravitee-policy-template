@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.policy.template;/**
+package io.gravitee.policy.template;
+
+/**
  * Copyright (C) 2015 The Gravitee team (http://gravitee.io)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,13 +32,12 @@ package io.gravitee.policy.template;/**
  */
 
 import io.gravitee.common.http.HttpStatusCode;
-import io.gravitee.gateway.api.http.HttpHeaders;
 import io.gravitee.gateway.reactive.api.ExecutionFailure;
 import io.gravitee.gateway.reactive.api.context.HttpExecutionContext;
 import io.gravitee.gateway.reactive.api.policy.Policy;
 import io.gravitee.policy.template.configuration.TemplatePolicyConfiguration;
+import io.gravitee.policy.template.v3.TemplatePolicyV3;
 import io.reactivex.rxjava3.core.Completable;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -44,14 +45,11 @@ import lombok.extern.slf4j.Slf4j;
  * @author GraviteeSource Team
  */
 @Slf4j
-@RequiredArgsConstructor
-public class TemplatePolicy implements Policy {
+public class TemplatePolicy extends TemplatePolicyV3 implements Policy {
 
-    public static final String TEMPLATE_POLICY_HEADER = "x-template-policy";
-    public static final String TEMPLATE_POLICY_EXECUTED_HEADER = "x-template-policy-executed";
-    public static final String ERROR_MESSAGE = "Invalid header";
-
-    private final TemplatePolicyConfiguration configuration;
+    public TemplatePolicy(TemplatePolicyConfiguration configuration) {
+        super(configuration);
+    }
 
     @Override
     public String id() {
@@ -75,10 +73,6 @@ public class TemplatePolicy implements Policy {
             return ctx.interruptWith(new ExecutionFailure(HttpStatusCode.INTERNAL_SERVER_ERROR_500).message(ERROR_MESSAGE));
         }
         ctx.response().headers().add(TEMPLATE_POLICY_EXECUTED_HEADER, "ok");
-        return Policy.super.onRequest(ctx);
-    }
-
-    private boolean shouldInterrupt(HttpHeaders headers) {
-        return headers.getAll(TEMPLATE_POLICY_HEADER).stream().anyMatch(header -> header.equalsIgnoreCase(configuration.getErrorKey()));
+        return Completable.complete();
     }
 }
