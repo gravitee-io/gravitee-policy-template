@@ -44,10 +44,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author Yann TAVERNIER (yann.tavernier at graviteesource.com)
- * @author GraviteeSource Team
- */
 @GatewayTest
 @DeployApi({ "/apis/v4/api.json", "/apis/v4/api-response.json" })
 public class TemplatePolicyIntegrationTest extends AbstractPolicyTest<TemplatePolicy, TemplatePolicyConfiguration> {
