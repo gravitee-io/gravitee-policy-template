@@ -34,7 +34,7 @@
     <properties>
         <!-- TODO: Check version regarding APIM / AM target -->
         <!-- Gravitee dependencies for APIM / AM >= 4.4.x -->
-        <gravitee-bom.version>8.0.4</gravitee-bom.version>
+        <gravitee-bom.version>8.1.0</gravitee-bom.version>
         <gravitee-common.version>4.4.0</gravitee-common.version>
         <gravitee-gateway-api.version>3.5.0</gravitee-gateway-api.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
