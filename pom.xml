@@ -36,7 +36,7 @@
         <!-- Gravitee dependencies for APIM / AM >= 4.4.x -->
         <gravitee-bom.version>8.0.4</gravitee-bom.version>
         <gravitee-common.version>4.4.0</gravitee-common.version>
-        <gravitee-gateway-api.version>3.5.0</gravitee-gateway-api.version>
+        <gravitee-gateway-api.version>3.13.1</gravitee-gateway-api.version>
         <gravitee-policy-api.version>1.11.0</gravitee-policy-api.version>
         <gravitee-apim.version>4.4.0-SNAPSHOT</gravitee-apim.version>
 
