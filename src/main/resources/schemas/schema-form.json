@@ -3,12 +3,20 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "property": {
-            "title": "property",
-            "description": "A property of template policy",
+        "condition": {
+            "title": "Condition",
+            "description": "EL expression evaluated on each record. The header is added only when it is true. Leave empty to always add it.",
             "type": "string",
-            "default": ""
+            "x-schema-form": { "expression-language": true }
+        },
+        "headerName": {
+            "title": "Header name",
+            "type": "string"
+        },
+        "headerValue": {
+            "title": "Header value",
+            "type": "string"
         }
     },
-    "required": []
+    "required": ["headerName", "headerValue"]
 }

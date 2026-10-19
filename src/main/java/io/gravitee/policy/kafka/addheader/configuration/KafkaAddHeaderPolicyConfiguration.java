@@ -13,17 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.policy.template.configuration;
+package io.gravitee.policy.kafka.addheader.configuration;
 
 import io.gravitee.policy.api.PolicyConfiguration;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Configuration of the policy, deserialized by the gateway from the JSON shown in {@code schema-form.json}.
+ */
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
-public class TemplatePolicyConfiguration implements PolicyConfiguration {
+@AllArgsConstructor
+public class KafkaAddHeaderPolicyConfiguration implements PolicyConfiguration {
 
-    private String errorKey = "failure";
+    /**
+     * Gravitee EL expression evaluated against each record, e.g. {@code {#message.topic == 'orders'}}.
+     * The header is added only when it evaluates to {@code true}. A blank condition always matches.
+     */
+    private String condition;
+
+    /** Name of the record header to add. */
+    private String headerName;
+
+    /** Value of the record header to add. */
+    private String headerValue;
 }
